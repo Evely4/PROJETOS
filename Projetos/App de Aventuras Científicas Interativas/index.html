@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Científico</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Corpo da página */
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: url('./rapaz-e-rapariga-fazem-ciencia-experimentar-juntos_1308-20345.avif') no-repeat center center fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: #333;
+            padding-top: 20px;
+        }
+
+        /* Container principal do quiz */
+        .quiz-container {
+            width: 80%;
+            margin: 0 auto;
+            padding-top: 20px;
+        }
+
+        /* Blocos de perguntas */
+        .quiz-block {
+            border-radius: 15px;
+            margin: 20px 0;
+            padding: 20px;
+            position: relative;
+            color: #fff;
+            text-align: center;
+            background-color: transparent;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Bloco 1: Cor Azul */
+        .block-blue {
+            background-color: #3498db;
+        }
+
+        /* Bloco 2: Cor Verde */
+        .block-green {
+            background-color: #2ecc71;
+        }
+
+        /* Bloco 3: Cor Amarela */
+        .block-yellow {
+            background-color: #f1c40f;
+        }
+
+        /* Bloco 4: Cor Laranja */
+        .block-orange {
+            background-color: #e67e22;
+        }
+
+        /* Bloco 5: Cor Rosa */
+        .block-pink {
+            background-color: #ff69b4;
+        }
+
+        /* Conteúdo dentro dos blocos */
+        .quiz-block .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Títulos dos blocos */
+        .quiz-block h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        /* Perguntas */
+        .question {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            text-align: left;
+            color: #333; /* Ajuste de cor para maior contraste */
+        }
+
+        .question p {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        /* Opções de respostas */
+        .options {
+            list-style: none;
+            padding: 0;
+        }
+
+        .options li {
+            margin-bottom: 10px;
+        }
+
+        .options input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #000;
+            display: none;
+        }
+
+        /* Botão de reinício */
+        .reset-button {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            padding: 10px;
+            font-size: 1.2em;
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .reset-button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <!-- Bloco 1: Animais -->
+        <div class="quiz-block block-blue">
+            <div class="content">
+                <h2>Animais</h2>
+                <div class="question">
+                    <p>Qual é o maior animal terrestre?</p>
+                    <ul class="options">
+                        <li><input type="radio" name="q1" id="q1a" value="a"><label for="q1a">Elefante</label></li>
+                        <li><input type="radio" name="q1" id="q1b" value="b"><label for="q1b">Girafa</label></li>
+                        <li><input type="radio" name="q1" id="q1c" value="c"><label for="q1c">Rinoceronte</label></li>
+                        <li><input type="radio" name="q1" id="q1d" value="d"><label for="q1d">Hipopótamo</label></li>
+                    </ul>
+                    <div class="feedback" id="feedback-q1">Correção: O elefante é o maior animal terrestre.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bloco 2: Plantas -->
+        <div class="quiz-block block-green">
+            <div class="content">
+                <h2>Plantas</h2>
+                <div class="question">
+                    <p>Qual parte da planta realiza a fotossíntese?</p>
+                    <ul class="options">
+                        <li><input type="radio" name="q2" id="q2a" value="a"><label for="q2a">Raízes</label></li>
+                        <li><input type="radio" name="q2" id="q2b" value="b"><label for="q2b">Caule</label></li>
+                        <li><input type="radio" name="q2" id="q2c" value="c"><label for="q2c">Folhas</label></li>
+                        <li><input type="radio" name="q2" id="q2d" value="d"><label for="q2d">Flores</label></li>
+                    </ul>
+                    <div class="feedback" id="feedback-q2">Correção: As folhas realizam a fotossíntese.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bloco 3: Ecossistemas -->
+        <div class="quiz-block block-yellow">
+            <div class="content">
+                <h2>Ecossistemas</h2>
+                <div class="question">
+                    <p>O que é um ecossistema?</p>
+                    <ul class="options">
+                        <li><input type="radio" name="q3" id="q3a" value="a"><label for="q3a">Um grupo de animais da mesma espécie</label></li>
+                        <li><input type="radio" name="q3" id="q3b" value="b"><label for="q3b">Uma área com apenas plantas</label></li>
+                        <li><input type="radio" name="q3" id="q3c" value="c"><label for="q3c">Uma comunidade de organismos interagindo com seu ambiente</label></li>
+                        <li><input type="radio" name="q3" id="q3d" value="d"><label for="q3d">Um espaço apenas para animais selvagens</label></li>
+                    </ul>
+                    <div class="feedback" id="feedback-q3">Correção: Um ecossistema é uma comunidade de organismos interagindo com seu ambiente.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bloco 4: Química -->
+        <div class="quiz-block block-orange">
+            <div class="content">
+                <h2>Química</h2>
+                <div class="question">
+                    <p>Qual é o símbolo químico da água?</p>
+                    <ul class="options">
+                        <li><input type="radio" name="q4" id="q4a" value="a"><label for="q4a">O₂</label></li>
+                        <li><input type="radio" name="q4" id="q4b" value="b"><label for="q4b">H₂</label></li>
+                        <li><input type="radio" name="q4" id="q4c" value="c"><label for="q4c">CO₂</label></li>
+                        <li><input type="radio" name="q4" id="q4d" value="d"><label for="q4d">H₂O</label></li>
+                    </ul>
+                    <div class="feedback" id="feedback-q4">Correção: O símbolo químico da água é H₂O.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bloco 5: Corpo Humano -->
+        <div class="quiz-block block-pink">
+            <div class="content">
+                <h2>Corpo Humano</h2>
+                <div class="question">
+                    <p>Qual órgão é responsável por bombear o sangue?</p>
+                    <ul class="options">
+                        <li><input type="radio" name="q5" id="q5a" value="a"><label for="q5a">Pulmões</label></li>
+                        <li><input type="radio" name="q5" id="q5b" value="b"><label for="q5b">Fígado</label></li>
+                        <li><input type="radio" name="q5" id="q5c" value="c"><label for="q5c">Cérebro</label></li>
+                        <li><input type="radio" name="q5" id="q5d" value="d"><label for="q5d">Coração</label></li>
+                    </ul>
+                    <div class="feedback" id="feedback-q5">Correção: O coração é responsável por bombear o sangue.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botão de Reinício -->
+        <button class="reset-button" onclick="resetQuiz()">Reiniciar Quiz</button>
+    </div>
+
+    <script>
+        document.querySelectorAll('.question').forEach(question => {
+            const options = question.querySelectorAll('input[type="radio"]');
+            const feedback = question.querySelector('.feedback');
+
+            options.forEach(option => {
+                option.addEventListener('change', () => {
+                    feedback.style.display = 'block';
+                });
+            });
+        });
+
+        function resetQuiz() {
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.checked = false;
+            });
+
+            document.querySelectorAll('.feedback').forEach(feedback => {
+                feedback.style.display = 'none';
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 5px;
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        li.completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        .remove {
+            color: red;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .theme-switcher {
+            margin-top: 20px;
+        }
+
+        .theme-switcher button {
+            margin: 5px;
+        }
+
+        body.light {
+            background-color: white;
+            color: black;
+        }
+
+        body.dark {
+            background-color: #333;
+            color: white;
+        }
+
+        body.colorful {
+            background-color: #ffb3b3;
+            color: #003366;
+        }
+
+        body.colorful li {
+            background-color: #ffcccb;
+        }
+    </style>
+</head>
+<body class="light">
+    <div class="container">
+        <h1>Minha Lista de Tarefas</h1>
+        <input type="text" id="taskInput" placeholder="Adicione uma nova tarefa...">
+        <button onclick="addTask()">Adicionar</button>
+        <ul id="taskList"></ul>
+        
+        <div class="theme-switcher">
+            <p>Mude o tema:</p>
+            <button onclick="changeTheme('light')">Claro</button>
+            <button onclick="changeTheme('dark')">Escuro</button>
+            <button onclick="changeTheme('colorful')">Colorido</button>
+        </div>
+    </div>
+
+    <script>
+        function addTask() {
+            var taskInput = document.getElementById('taskInput');
+            var taskList = document.getElementById('taskList');
+
+            if (taskInput.value.trim() !== "") {
+                var li = document.createElement('li');
+                li.textContent = taskInput.value;
+
+                li.onclick = function() {
+                    this.classList.toggle('completed');
+                }
+
+                var removeBtn = document.createElement('span');
+                removeBtn.textContent = '✖';
+                removeBtn.className = 'remove';
+                removeBtn.onclick = function() {
+                    this.parentElement.remove();
+                }
+
+                li.appendChild(removeBtn);
+                taskList.appendChild(li);  // Adiciona a nova tarefa ao final da lista
+                taskInput.value = '';       // Limpa o campo de entrada após adicionar a tarefa
+            }
+        }
+
+        function changeTheme(theme) {
+            document.body.className = theme;
+        }
+    </script>
+</body>
+</html>
